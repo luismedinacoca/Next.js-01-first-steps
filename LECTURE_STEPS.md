@@ -1,4 +1,4 @@
-
+# 👨🏾‍💻 Section 02: Introduction to Next.js
 
 ## Getting Started
 
@@ -232,3 +232,94 @@ export default function RootLayout({
 }
 ```
 
+---
+
+## 📚 Lecture 016:  Metadata - Metatags
+
+### 1. Add **`Metadata`** import in **`About`** page:
+```tsx
+/* ./app/about/page.tsx */
+import { Metadata } from "next";      // 👈🏽 ✅
+
+export const metadata: Metadata = {   // 👈🏽 ✅
+  title: "About",
+  description: "About page",
+};
+
+export default function AboutPage() {
+  return (
+    <>
+      <span className="text-7xl flex justify-center items-center">About Page</span>
+    </>
+  )
+}
+```
+
+### 2. Add **`Metadata`** import in **`COntact`** page:
+```tsx
+/* ./app/contact/page.tsx */
+import { Metadata } from "next";      // 👈🏽 ✅
+
+export const metadata: Metadata = {   // 👈🏽 ✅
+  title: "Contact",
+  description: "Contact page",
+};
+
+export default function ContactPage() {
+  return (
+    <>
+      <span className="text-7xl flex justify-center items-center">Contact Page</span>
+    </>
+  )
+}
+```
+
+### 3. Add **`Metadata`** import in **`Pricing`** page:
+```tsx
+/* ./app/pricing/page.tsx */
+import { Metadata } from "next";      // 👈🏽 ✅
+
+export const metadata: Metadata = {   // 👈🏽 ✅
+  title: "Pricing",
+  description: "Pricing page",
+};
+
+export default function PricingPage() {
+  return (
+    <>
+      <span className="text-7xl flex justify-center items-center">Pricing Page</span>
+    </>
+  )
+}
+```
+
+### 4. How this update is display in elements section for each page.
+<img src="./img/section02-lecture016-001.png">
+
+### 5. Add **`keywords`** in **`About`** page:
+```tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "About page",
+  keywords: ["about", "portfolio", "someone", "information"], // 👈🏽 ✅
+};
+
+export default function AboutPage() {
+  return (
+    <>
+      <span className="text-7xl flex justify-center items-center">About Page</span>
+    </>
+  )
+}
+```
+<img src="./img/section02-lecture016-002.png">
+
+
+
+
+---
+
+## 📚 Lecture 0
+## 📚 Lecture 0
