@@ -563,6 +563,111 @@ export const Navbar = () => {
 };
 ```
 
+## 📚 Lecture 022: usePathname - ActiveLink
+
+### 1. Add **`components/active-link/ActiveLink.tsx`** file:
+```
+01-first-steps
+├── .next/
+├── app/
+│    └── (general)/           
+│        ├── layout.tsx       
+│        ├── about/           
+│        │    └── page.jsx    
+│        ├── contact/         
+│        │    └── page.jsx    
+│        └── pricing/         
+│             └── page.jsx    
+├── components/                       
+│    ├── active-link                    # 👈🏽 ✅
+│    │    ├── ActiveLink.module.css     # 👈🏽 ✅      
+│    │    └── ActiveLink.tsx            # 👈🏽 ✅     
+│    ├── index.ts             
+│    └── navbar/              
+│        └── Navbar.tsx       
+├── node_modules/
+├── public/
+├── .gitignore
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── README.md
+└── tsconfig.json
+```
+
+### 2. **`ActiveLink.module.css`**:
+```css
+@reference "tailwindcss";
+
+.link {
+  @apply hover:underline hover:text-blue-400 mr-2 transition-all
+}
+
+.active-link {
+  @apply text-blue-500  font-bold
+}
+```
+
+### 3. **`ActiveLink.tsx`**:
+```tsx
+"use client";
+
+import Link from "next/link";
+import style from "./ActiveLink.module.css";
+import { usePathname } from "next/navigation";
+
+interface Props {
+  path: string;
+  text: string;
+}
+
+export const ActiveLink = ({ path, text }: Props) => {
+  const pathName = usePathname();
+  return (
+    <Link href={path} className={` ${style.link} ${pathName === path && style["active-link"]} `}>
+      {text}
+    </Link>
+  );
+};
+```
+
+### 4. **`index.ts`**
+```ts
+export * from "./navbar/Navbar";
+
+// Client Components
+export { ActiveLink } from "./active-link/ActiveLink";
+```
+
+### 5. **`Navbar.tsx`**:
+```tsx
+import Link from "next/link";
+import { HomeIcon } from "@primer/octicons-react";
+import { ActiveLink } from "../active-link/ActiveLink";
+
+const navItems = [
+  { path: "/about", text: "About" },
+  { path: "/contact", text: "Contact" },
+  { path: "/pricing", text: "Pricing" },
+];
+
+export const Navbar = () => {
+  return (
+    <nav className="flex bg-blue-900 bg-opacity-30 p-2 m-2 rounded text-blue-100">
+      <Link href="/" className="flex items-center mr-2">
+        <HomeIcon /> <span>Home</span>
+      </Link>
+      <div className="flex- flex-1"></div>
+      {navItems.map((navItem) => {
+        return <ActiveLink key={navItem.path} {...navItem} />;
+      })}
+    </nav>
+  );
+};
+```
 
 
 ## 📚 Lecture 0
