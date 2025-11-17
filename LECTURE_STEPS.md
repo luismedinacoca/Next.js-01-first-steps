@@ -418,7 +418,89 @@ export default function GeneralLayout({
 }
 ```
 
+## 📚 Lecture 018: Navbar:
 
-## 📚 Lecture 0
+### 1. Add **`components/navbar/Navbar.tsx`** file:
+```
+01-first-steps
+├── .next/
+├── app/
+│    └── (general)/           
+│        ├── layout.tsx       
+│        ├── about/           
+│        │    └── page.jsx    
+│        ├── contact/         
+│        │    └── page.jsx    
+│        └── pricing/         
+│             └── page.jsx    
+├── components/               # 👈🏽 ✅
+│    ├── index.ts             # 👈🏽 ✅
+│    └── navbar/              # 👈🏽 ✅
+│        └── Navbar.tsx       # 👈🏽 ✅
+├── node_modules/
+├── public/
+├── .gitignore
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── README.md
+└── tsconfig.json
+```
+
+### 2. Complete **`Navbar.jsx`**:
+```tsx
+export const Navbar = () => {
+  return (
+    <nav className="flex bg-blue-900 bg-opacity-30 p-2 m-2 rounded text-blue-100">
+      <span>Home</span>
+      <div className="flex- flex-1"></div>
+      <a href="/about" className="mr-3">About</a>
+      <a href="/contact" className="mr-3">Contact</a>
+      <a href="/pricing" className="mr-3">Pricing</a>
+    </nav>
+  )
+}
+```
+
+### 3. Update **`app/(general)/layout.tsx`**:
+```tsx
+import { Montserrat } from "next/font/google";
+import { Navbar } from "@/components";  // 👈🏽 ✅ 
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+});
+
+export default function GeneralLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <>
+      <Navbar />  // 👈🏽 ✅ 
+      <div className={montserrat.className}>
+        <h2 className="text-3xl flex justify-center items-center text-green-500">
+          Hello from General Layout 👋🏽
+        </h2>
+        {children}
+      </div>
+    </>
+  );
+}
+```
+
+### 4. Visit following URLs:
+- http://localhost:3000
+- http://localhost:3000/about
+- http://localhost:3000/contact
+- http://localhost:3000/pricing
+
+<img src="./img/section02-lecture18-001.png">
+
+
 ## 📚 Lecture 0
 ## 📚 Lecture 0
