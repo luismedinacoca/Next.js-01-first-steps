@@ -1,0 +1,101 @@
+# -------------------------------------------------------
+#  .dockerignore - Best Practice Template (English Only)
+#  Purpose: Reduce build context, avoid sensitive files,
+#  speed up docker builds, and prevent bloated images.
+# -------------------------------------------------------
+.dockerignore 
+
+# ============================
+#  DEPENDENCIES & BUILD ARTIFACTS
+# ============================
+node_modules
+vendor/
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+dist/
+build/
+target/
+out/
+
+# ============================
+#  VERSION CONTROL
+# ============================
+.git
+.gitignore
+.gitattributes
+
+# ============================
+#  DEBUG / TEST FILES
+# ============================
+coverage/
+.nyc_output/
+*.lcov
+*.test.js
+*.test.ts
+tests/
+__tests__/
+
+# ============================
+#  LOGS & TEMP FILES
+# ============================
+*.log
+logs/
+*.tmp
+tmp/
+.cache/
+*.swp
+
+# ============================
+#  SECRETS / SECURITY
+#  (These should NOT be in source control)
+# ============================
+.env
+*.env
+*.key
+*.pem
+*.crt
+secrets/
+credentials/
+certs/
+
+# ============================
+#  CI/CD & LOCAL CONFIGS
+# ============================
+.github/
+.gitlab-ci.yml
+.circleci/
+docker-compose.override.yml
+
+# ============================
+#  OS & EDITOR FILES
+# ============================
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ============================
+#  BINARY / EXECUTABLE FILES
+# ============================
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+
+# ============================
+#  DOCUMENTS (not required in builds unless needed)
+# ============================
+*.md
+*.pdf
+*.zip
+*.tar.gz
+docs/

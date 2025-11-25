@@ -166,7 +166,7 @@ export default function AboutPage() {
 
 ### 3. Go to browser and open to URL: [localhost](http://localhost:3000/about)
 
-<img src="./img/section02-lecture015-001.png">
+<img src="../img/section02-lecture015-001.png">
 
 ### 4. Add **`contact`** ad **`pricing`** pages:
 ```
@@ -294,7 +294,7 @@ export default function PricingPage() {
 ```
 
 ### 4. How this update is display in elements section for each page.
-<img src="./img/section02-lecture016-001.png">
+<img src="../img/section02-lecture016-001.png">
 
 ### 5. Add **`keywords`** in **`About`** page:
 ```tsx
@@ -314,7 +314,7 @@ export default function AboutPage() {
   )
 }
 ```
-<img src="./img/section02-lecture016-002.png">
+<img src="../img/section02-lecture016-002.png">
 
 
 
@@ -499,7 +499,7 @@ export default function GeneralLayout({
 - http://localhost:3000/contact
 - http://localhost:3000/pricing
 
-<img src="./img/section02-lecture18-001.png">
+<img src="../img/section02-lecture18-001.png">
 
 
 ## 📚 Lecture 020: Next/Link
@@ -627,7 +627,7 @@ interface Props {
 export const ActiveLink = ({ path, text }: Props) => {
   const pathName = usePathname();
   return (
-    <Link href={path} className={` ${style.link} ${pathName === path && style["active-link"]} `}>
+    <Link href={path} className={` ${style.link} ${(pathName === path) && style["active-link"]} `}>
       {text}
     </Link>
   );
@@ -668,6 +668,150 @@ export const Navbar = () => {
   );
 };
 ```
+---
+
+# 👨🏾‍💻 Section 03: Deployment to Vercel and Docker images
+
+## 📚 Lecture 031. Docker - Simple Build
+
+### 1. Create **`.dockerignore`**:
+```dockerignore
+# -------------------------------------------------------
+#  .dockerignore - Best Practice Template (English Only)
+#  Purpose: Reduce build context, avoid sensitive files,
+#  speed up docker builds, and prevent bloated images.
+# -------------------------------------------------------
+.dockerignore 
+
+# ============================
+#  DEPENDENCIES & BUILD ARTIFACTS
+# ============================
+node_modules
+vendor/
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+dist/
+build/
+target/
+out/
+
+# ============================
+#  VERSION CONTROL
+# ============================
+.git
+.gitignore
+.gitattributes
+
+# ============================
+#  DEBUG / TEST FILES
+# ============================
+coverage/
+.nyc_output/
+*.lcov
+*.test.js
+*.test.ts
+tests/
+__tests__/
+
+# ============================
+#  LOGS & TEMP FILES
+# ============================
+*.log
+logs/
+*.tmp
+tmp/
+.cache/
+*.swp
+
+# ============================
+#  SECRETS / SECURITY
+#  (These should NOT be in source control)
+# ============================
+.env
+*.env
+*.key
+*.pem
+*.crt
+secrets/
+credentials/
+certs/
+
+# ============================
+#  CI/CD & LOCAL CONFIGS
+# ============================
+.github/
+.gitlab-ci.yml
+.circleci/
+docker-compose.override.yml
+
+# ============================
+#  OS & EDITOR FILES
+# ============================
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ============================
+#  BINARY / EXECUTABLE FILES
+# ============================
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+
+# ============================
+#  DOCUMENTS (not required in builds unless needed)
+# ============================
+*.md
+*.pdf
+*.zip
+*.tar.gz
+docs/
+```
+
+### 2. Create **`dockerfile`**:
+```yaml
+# Use a small and efficient Node.js base image (Alpine = lightweight Linux)
+FROM node:18-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy only the package files first (this allows Docker caching of dependencies)
+COPY package.json package-lock.json* ./
+
+# Install only production dependencies unless dev build is needed
+RUN npm install --omit=dev
+
+# Copy the rest of the application code into the container
+COPY . /
+
+# Build the application (useful for React, Next.js, TypeScript transpilation, etc.)
+RUN npm run build
+
+# The container will listen on this port
+EXPOSE 3000
+
+# Command executed when the container starts (start the app)
+CMD ["npm", "start"]
+```
+
+### 3. Build a docker image from terminal:
+```bash
+docker build -t nextjs-first-steps .
+```
+
+<img src="../img/section03-lecture031-001.png">
 
 
 ## 📚 Lecture 0
