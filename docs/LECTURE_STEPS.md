@@ -818,7 +818,7 @@ docker build -t nextjs-first-steps .
 
 ### 1. Rename the **`dockerfile`** by **`dockerfile.old`**
 
-### 2. Go to [Git-repo](https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile) and copy/paste in a new **`dockerfile`**:
+### 2. Go to [Git-repo-for-dockerfile-example](https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile) and copy/paste in a new **`dockerfile`**:
 ```yaml
 # syntax=docker.io/docker/dockerfile:1
 
@@ -900,6 +900,9 @@ export default nextConfig;
 ```
 
 
+```bash
+docker run -dp 3000:3000 nextjs-01-first-steps
+```
 
 ## 📚 Lecture 0
 ## 📚 Lecture 0
